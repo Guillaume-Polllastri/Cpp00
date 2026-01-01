@@ -6,12 +6,20 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 11:23:25 by gpollast          #+#    #+#             */
-/*   Updated: 2025/12/18 17:10:18 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/01 17:48:24 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cctype>
+
+static void	megaphone(int ac, char **av)
+{
+	for (int i = 1; i < ac; i++)
+		for (int j = 0; av[i][j]; j++)
+			std::cout << (char)std::toupper(av[i][j]);
+	std::cout << std::endl;
+}
 
 int	main(int ac, char **av)
 {
@@ -20,9 +28,7 @@ int	main(int ac, char **av)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (1);
 	}
-	for (size_t i = 1; av[i]; i++)
-	{
-		std::cout << av[i] << std::endl;
-	}
+	else
+		megaphone(ac, av);
 	return (0);
 }
