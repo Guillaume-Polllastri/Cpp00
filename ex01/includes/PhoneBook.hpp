@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 15:08:42 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/05 00:12:21 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/05 15:08:28 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ private:
 public:
 	PhoneBook();
 	void add_new_contact();
-	int	get_contact_count() const;
+	int	display_all_contact() const;
+	void display_specify_contact() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:04:17 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/05 00:12:50 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/05 17:24:07 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void PhoneBook::add_new_contact()
 	}
 	std::cout << "Enter your darkest secret: ";
 	std::getline(std::cin, p5);
+	std::cout << '\n';
 	if (std::cin.eof() == 1)
 	{
 		std::cin.clear();
@@ -72,12 +73,38 @@ void PhoneBook::add_new_contact()
 		std::cout << '\n';
 		return ;
 	}
-	this->contacts[contact_count].set_contact(p1, p2, p3, p4, p5);
-	this->contact_count++;
-	std::cout << this->contact_count << '\n';
+	this->contacts[oldest_index_contact].set_contact(p1, p2, p3, p4, p5);
+	this->oldest_index_contact = (this->oldest_index_contact + 1) % 8;
+	if (this->contact_count < 8)
+		this->contact_count++;
 }
 
-int PhoneBook::get_contact_count() const
+int	PhoneBook::display_all_contact() const
 {
-	return (this->contact_count);
+	if (this->contact_count == 0)
+		return (0);
+	for (int i = 0; i < this->contact_count; i++)
+		this->contacts[i].display_contact(i + 1);
+	return (1);
+}
+
+void PhoneBook::display_specify_contact() const
+{
+	int	entry;
+
+	std::cout << "Enter the index of the contact: ";
+	std::cin >> entry;
+	if (std::cin.eof() == 1)
+	{
+		std::cin.clear();
+		std::clearerr(stdin);
+		std::cout << '\n';
+		return ;
+	}
+	if (entry <= this->contact_count && entry > 0)
+		this->contacts[entry - 1].display_all_info();
+	else
+		std::cout << "Error: Incorrect index\n";
+	std::cin.ignore();
+	return ;
 }

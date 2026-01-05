@@ -6,7 +6,7 @@
 #    By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/18 11:36:06 by gpollast          #+#    #+#              #
-#    Updated: 2026/01/04 17:16:42 by gpollast         ###   ########.fr        #
+#    Updated: 2026/01/05 10:09:00 by gpollast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS =	src/main.cpp \
 		src/PhoneBook.cpp
 
 C++ = c++
-C++_FLAGS = -Wall -Wextra -Werror -std=c++98 -L ./includes
+C++_FLAGS = -Wall -Wextra -Werror -std=c++98 -I ./includes
 
 OBJ_DIR = obj
 OBJ = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

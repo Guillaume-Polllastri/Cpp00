@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:45:39 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/05 00:14:25 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/05 17:24:11 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ int	main()
 	std::cout << "Enter a command: ";
 	std::getline(std::cin, a1);
 	if (std::cin.eof() == 1)
+	{
+		std::cout << '\n';
 		return (1);
+	}
 	if (a1.compare("ADD") && a1.compare("SEARCH") && a1.compare("EXIT"))
 	{
-		std::cout << "Bad command\n";
+		std::cout << "Error : Bad command\n\n";
 		goto back;
 	}
 	if (!a1.compare("ADD"))
@@ -38,6 +41,9 @@ int	main()
 	}
 	if (!a1.compare("SEARCH"))
 	{
+		if (test.display_all_contact())
+			test.display_specify_contact();
+		goto back;
 	}
 	return (0);
 }
