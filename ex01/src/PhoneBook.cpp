@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:04:17 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/07 14:16:07 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/07 18:20:56 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 #include <string>
 #include <cstdio>
 #include <iomanip>
+
+static void replace_tabs(std::string &str)
+{
+	for (int i = 0; i < (int)str.length(); i++)
+	{
+		if (str[i] == '\f' || str[i] == '\t' || str[i] == 'n' || str[i] == 'r' || str[i] == 'v')
+			str[i] = ' ';
+	}
+}
 
 PhoneBook::PhoneBook() : contact_count(0), oldest_index_contact(0) {
 }
@@ -31,7 +40,8 @@ void PhoneBook::add_new_contact()
 
 	std::cout << "Enter your first name: ";
 	std::getline(std::cin, p1);
-	if (std::cin.eof() == 1)
+	replace_tabs(p1);
+	if (std::cin.eof() == 1 || p1.empty())
 	{
 		std::cin.clear();
 		std::clearerr(stdin);
@@ -40,7 +50,8 @@ void PhoneBook::add_new_contact()
 	}
 	std::cout << "Enter your last name: ";
 	std::getline(std::cin, p2);
-	if (std::cin.eof() == 1)
+	replace_tabs(p2);
+	if (std::cin.eof() == 1 || p2.empty())
 	{
 		std::cin.clear();
 		std::clearerr(stdin);
@@ -49,7 +60,8 @@ void PhoneBook::add_new_contact()
 	}
 	std::cout << "Enter your nickname: ";
 	std::getline(std::cin, p3);
-	if (std::cin.eof() == 1)
+	replace_tabs(p3);
+	if (std::cin.eof() == 1 || p3.empty())
 	{
 		std::cin.clear();
 		std::clearerr(stdin);
@@ -58,7 +70,8 @@ void PhoneBook::add_new_contact()
 	}
 	std::cout << "Enter your phone number: ";
 	std::getline(std::cin, p4);
-	if (std::cin.eof() == 1)
+	replace_tabs(p4);
+	if (std::cin.eof() == 1 || p4.empty())
 	{
 		std::cin.clear();
 		std::clearerr(stdin);
@@ -68,7 +81,8 @@ void PhoneBook::add_new_contact()
 	std::cout << "Enter your darkest secret: ";
 	std::getline(std::cin, p5);
 	std::cout << '\n';
-	if (std::cin.eof() == 1)
+	replace_tabs(p5);
+	if (std::cin.eof() == 1 || p5.empty())
 	{
 		std::cin.clear();
 		std::clearerr(stdin);
