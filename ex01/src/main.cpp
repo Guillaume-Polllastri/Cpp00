@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:45:39 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/07 14:01:42 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/07 15:54:56 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	main()
 				test.display_specify_contact();
 			continue;
 		}
+		if (!a1.compare("EXIT"))
+			break;
 	}
 	return (0);
 }
