@@ -6,12 +6,14 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:04:20 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/05 17:33:01 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/07 13:32:52 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Contact.hpp"
+
 #include <iostream>
+#include <iomanip>
 
 Contact::Contact() {
 }
@@ -37,10 +39,10 @@ static std::string	parse_contact_info(std::string s)
 }
 
 void Contact::display_contact(int index) const {
-	std::cout << "| " << index << " | ";
-	std::cout << parse_contact_info(this->first_name) << " | ";
-	std::cout << parse_contact_info(this->last_name) << " | ";
-	std::cout << parse_contact_info(this->nickname) << " | " << "\n";
+	std::cout << "| " << std::setw(5) <<  index << " | ";
+	std::cout << std::setw(10) << parse_contact_info(this->first_name) << " | ";
+	std::cout << std::setw(10) << parse_contact_info(this->last_name) << " | ";
+	std::cout << std::setw(10) << parse_contact_info(this->nickname) << " | " << "\n";
 }
 
 void Contact::display_all_info() const

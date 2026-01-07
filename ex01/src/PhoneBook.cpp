@@ -6,15 +6,17 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:04:17 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/05 17:24:07 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:16:07 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PhoneBook.hpp"
 #include "../includes/Contact.hpp"
+
 #include <iostream>
 #include <string>
 #include <cstdio>
+#include <iomanip>
 
 PhoneBook::PhoneBook() : contact_count(0), oldest_index_contact(0) {
 }
@@ -82,10 +84,18 @@ void PhoneBook::add_new_contact()
 int	PhoneBook::display_all_contact() const
 {
 	if (this->contact_count == 0)
-		return (0);
+	{
+		std::cout << "There is no contact registered\n\n";
+		return (1);
+	}
+	std::cout << "| " << std::setw(5) << "Index" << " | "
+		<< std::setw(10) << "First name" << " | "
+		<< std::setw(10) << "Last name" << " | "
+		<< std::setw(10) << "Nickname" << " |\n";
 	for (int i = 0; i < this->contact_count; i++)
 		this->contacts[i].display_contact(i + 1);
-	return (1);
+	std::cout << '\n';
+	return (0);
 }
 
 void PhoneBook::display_specify_contact() const
@@ -94,17 +104,24 @@ void PhoneBook::display_specify_contact() const
 
 	std::cout << "Enter the index of the contact: ";
 	std::cin >> entry;
-	if (std::cin.eof() == 1)
+	if (std::cin.fail())
 	{
+		if (std::cin.eof() == 1)
+		{
+			std::cin.clear();
+			std::clearerr(stdin);
+			std::cout << '\n';
+			return ;
+		}
+		std::cout << "Error: index must be a number\n\n";
 		std::cin.clear();
-		std::clearerr(stdin);
-		std::cout << '\n';
+		std::cin.ignore(100, '\n');
 		return ;
 	}
 	if (entry <= this->contact_count && entry > 0)
 		this->contacts[entry - 1].display_all_info();
 	else
-		std::cout << "Error: Incorrect index\n";
+		std::cout << "Error: Incorrect index\n\n";
 	std::cin.ignore();
 	return ;
 }

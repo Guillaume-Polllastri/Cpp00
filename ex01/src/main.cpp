@@ -6,7 +6,7 @@
 /*   By: gpollast <gpollast@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:45:39 by gpollast          #+#    #+#             */
-/*   Updated: 2026/01/05 17:24:11 by gpollast         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:01:42 by gpollast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,31 @@ int	main()
 	std::string a1;
 	std::string a2;
 
-	back:
-	std::cout << "Enter a command: ";
-	std::getline(std::cin, a1);
-	if (std::cin.eof() == 1)
+	while (true)
 	{
-		std::cout << '\n';
-		return (1);
-	}
-	if (a1.compare("ADD") && a1.compare("SEARCH") && a1.compare("EXIT"))
-	{
-		std::cout << "Error : Bad command\n\n";
-		goto back;
-	}
-	if (!a1.compare("ADD"))
-	{
-		test.add_new_contact();
-		goto back;
-	}
-	if (!a1.compare("SEARCH"))
-	{
-		if (test.display_all_contact())
-			test.display_specify_contact();
-		goto back;
+		std::cout << "Enter a command: ";
+		std::getline(std::cin, a1);
+		if (std::cin.eof() == 1)
+		{
+			std::cout << '\n';
+			return (1);
+		}
+		if (a1.compare("ADD") && a1.compare("SEARCH") && a1.compare("EXIT"))
+		{
+			std::cout << "Error : Bad command\n\n";
+			continue;
+		}
+		if (!a1.compare("ADD"))
+		{
+			test.add_new_contact();
+			continue;
+		}
+		if (!a1.compare("SEARCH"))
+		{
+			if (!test.display_all_contact())
+				test.display_specify_contact();
+			continue;
+		}
 	}
 	return (0);
 }
